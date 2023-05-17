@@ -1,4 +1,19 @@
-function simulate_waveforms( mcevents::TypedTables.Table, sim::Simulation{T},
+# This file is a part of SolidStateDetectors.jl, licensed under the MIT License (MIT).
+
+module SolidStateDetectorsLegendHDF5IOExt
+
+@static if isdefined(Base, :get_extension)
+    import LegendHDF5IO
+else
+    import ..LegendHDF5IO
+end
+
+using SolidStateDetectors
+using SolidStateDetectors: RealQuantity, SSDFloat
+using TypedTables, Unitful
+
+
+function SolidStateDetectors.simulate_waveforms( mcevents::TypedTables.Table, sim::Simulation{T},
                              output_dir::AbstractString, 
                              output_base_name::AbstractString = "generated_waveforms";
                              chunk_n_physics_events::Int = 1000, 
@@ -29,3 +44,5 @@ function simulate_waveforms( mcevents::TypedTables.Table, sim::Simulation{T},
         end        
     end    
 end
+
+end # module LegendHDF5IO

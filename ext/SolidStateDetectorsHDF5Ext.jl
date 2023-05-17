@@ -1,3 +1,16 @@
+# This file is a part of SolidStateDetectors.jl, licensed under the MIT License (MIT).
+
+module SolidStateDetectorsHDF5Ext
+
+@static if isdefined(Base, :get_extension)
+    import HDF5
+else
+    import ..HDF5
+end
+
+using SolidStateDetectors
+
+
 function ssd_write(filename::AbstractString, sim::Simulation)
     if isfile(filename) @warn "Destination `$filename` already exists. Overwriting..." end
     HDF5.h5open(filename, "w") do h5f
@@ -11,3 +24,4 @@ function ssd_read(filename::AbstractString, ::Type{Simulation})
     end     
 end  
 
+end # module HDF5
