@@ -52,7 +52,6 @@ jobs:
       - uses: julia-actions/julia-buildpkg@v1
         env:
           PYTHON: 'Conda'
-          JULIA_NUM_THREADS: '2'
       - uses: julia-actions/julia-runtest@v1
         with:
           coverage: ${{ matrix.version == '1' && matrix.os == 'ubuntu-latest' && matrix.arch == 'x64' }}
@@ -76,7 +75,6 @@ jobs:
       - uses: julia-actions/julia-buildpkg@v1
         env:
           PYTHON: 'Conda'
-          JULIA_NUM_THREADS: '2'
       - uses: julia-actions/julia-docdeploy@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
