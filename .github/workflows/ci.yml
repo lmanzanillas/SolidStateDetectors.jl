@@ -1,5 +1,8 @@
 name: CI
 
+env:
+  JULIA_NUM_THREADS: 2
+
 on:
   push:
     branches:
@@ -55,8 +58,6 @@ jobs:
       - uses: julia-actions/julia-runtest@v1
         with:
           coverage: ${{ matrix.version == '1' && matrix.os == 'ubuntu-latest' && matrix.arch == 'x64' }}
-        env:
-          JULIA_NUM_THREADS: '2'
       - uses: julia-actions/julia-processcoverage@v1
         if: matrix.version == '1' && matrix.os == 'ubuntu-latest' && matrix.arch == 'x64'
       - uses: codecov/codecov-action@v3
@@ -81,5 +82,3 @@ jobs:
           # Needed due to https://github.com/JuliaDocs/Documenter.jl/issues/1177
           DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
           GKSwstype: 'nul'
-          JULIA_NUM_THREADS: '2'
-
